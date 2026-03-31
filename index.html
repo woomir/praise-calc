@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>칭찬감사카드 KPI 시뮬레이터</title>
+    <title>칭찬감사카드 점수 계산기</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -19,9 +19,10 @@
     <link rel="stylesheet" as="style" crossorigin
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
     <style>
+        html { font-size: 125%; }
         input[type="number"] { -moz-appearance: textfield; }
         input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button { opacity: 1; height: 32px; }
+        input[type="number"]::-webkit-outer-spin-button { opacity: 1; height: 36px; }
         .num-input {
             width: 100%; text-align: center; font-weight: 600;
             border: 1px solid #e2e8f0; border-radius: 0.5rem;
@@ -42,12 +43,12 @@
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen font-sans antialiased text-slate-800">
-<div class="max-w-2xl mx-auto px-4 py-8 sm:py-12">
+<div class="max-w-3xl mx-auto px-4 py-8 sm:py-12">
 
     <!-- Header -->
     <header class="mb-8">
         <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-            칭찬감사카드 KPI 시뮬레이터
+            칭찬감사카드 점수 계산기
         </h1>
         <p class="mt-2 text-slate-500 text-sm leading-relaxed">
             '26년 3월~8월 (6개월) | 조직 문화 개선_칭찬감사카드 | 공통지표 HR / 정량B
@@ -74,7 +75,7 @@
             </div>
         </div>
         <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
-            * 연구소 내부(팀 간) 칭찬카드는 동일 부문이므로 KPI 산식에 반영되지 않습니다.
+            * 연구소 내부(팀 간) 칭찬카드는 동일 부문이므로 산식에 반영되지 않습니다.
         </p>
     </section>
 
@@ -133,18 +134,36 @@
     <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 mb-5">
         <div class="flex rounded-xl bg-slate-100 p-1" role="tablist">
             <button onclick="setMode('dept')" id="btn-dept" role="tab"
-                    class="flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all
+                    class="flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all
                            bg-white text-slate-900 shadow-sm">
                 부문 전체
             </button>
-            <button onclick="setMode('individual')" id="btn-individual" role="tab"
-                    class="flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all
+            <button onclick="setMode('team')" id="btn-team" role="tab"
+                    class="flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all
                            text-slate-500 hover:text-slate-700">
-                개인 기여도
+                팀별
+            </button>
+            <button onclick="setMode('individual')" id="btn-individual" role="tab"
+                    class="flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all
+                           text-slate-500 hover:text-slate-700">
+                개인
             </button>
         </div>
+
+        <!-- Team selector (shown in team mode) -->
+        <div id="team-selector" class="mt-3 hidden">
+            <label for="team-select" class="block text-xs font-medium text-slate-500 mb-1">소속 팀 선택</label>
+            <select id="team-select" onchange="onTeamChange()"
+                    class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm font-semibold
+                           text-slate-700 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                           outline-none transition appearance-none"
+                    style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22%2394a3b8%22><path fill-rule=%22evenodd%22 d=%22M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z%22 clip-rule=%22evenodd%22/></svg>'); background-position: right 0.75rem center; background-repeat: no-repeat; background-size: 1.25rem;">
+            </select>
+            <p id="team-headcount-info" class="mt-1 text-xs text-slate-400"></p>
+        </div>
+
         <p id="mode-desc" class="mt-2 text-xs text-slate-400">
-            연구소 전체의 칭찬카드 횟수를 입력하여 부문 KPI 점수를 산출합니다.
+            연구소 전체의 칭찬카드 횟수를 입력하여 부문 점수를 산출합니다.
         </p>
     </section>
 
@@ -457,7 +476,7 @@
     </section>
 
     <footer class="mt-8 text-center text-xs text-slate-300">
-        LS MnM 연구소 칭찬감사카드 KPI 시뮬레이터 | 2026
+        LS MnM 연구소 칭찬감사카드 점수 계산기 | 2026
     </footer>
 </div>
 
@@ -566,37 +585,73 @@
         document.getElementById('impact-chevron').style.transform = impactOpen ? 'rotate(180deg)' : '';
     }
 
+    // ── Team selector init ──
+    function initTeamSelector() {
+        const select = document.getElementById('team-select');
+        TEAMS.forEach(team => {
+            const opt = document.createElement('option');
+            opt.value = team.id;
+            opt.textContent = team.name;
+            select.appendChild(opt);
+        });
+    }
+
+    function getTeamAvgHeadcount(teamId) {
+        const vals = MONTHS.map(m => headcount[teamId][m] || 0);
+        return vals.reduce((a, b) => a + b, 0) / MONTHS.length;
+    }
+
+    function onTeamChange() {
+        const teamId = document.getElementById('team-select').value;
+        const team = TEAMS.find(t => t.id === teamId);
+        const teamAvg = getTeamAvgHeadcount(teamId);
+        document.getElementById('team-headcount-info').textContent =
+            `${team.name} 평균인원: ${teamAvg.toFixed(1)}명`;
+        // Reset inputs
+        document.querySelectorAll('input[data-type], #recv_lab, #sent_lab').forEach(el => { el.value = 0; });
+        calculate();
+    }
+
     // ── Mode ──
     function setMode(mode) {
         currentMode = mode;
-        const active = 'flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all bg-white text-slate-900 shadow-sm';
-        const inactive = 'flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all text-slate-500 hover:text-slate-700';
+        const active = 'flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all bg-white text-slate-900 shadow-sm';
+        const inactive = 'flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all text-slate-500 hover:text-slate-700';
 
         document.getElementById('btn-dept').className = mode === 'dept' ? active : inactive;
+        document.getElementById('btn-team').className = mode === 'team' ? active : inactive;
         document.getElementById('btn-individual').className = mode === 'individual' ? active : inactive;
+
+        // Team selector visibility
+        document.getElementById('team-selector').classList.toggle('hidden', mode !== 'team');
 
         if (mode === 'dept') {
             document.getElementById('mode-desc').textContent =
-                '연구소 전체의 칭찬카드 횟수를 입력하여 부문 KPI 점수를 산출합니다.';
+                '연구소 전체의 칭찬카드 횟수를 입력하여 부문 점수를 산출합니다.';
             document.getElementById('input-guide').textContent =
                 '연구소 소속원이 주고받은 칭찬카드의 총 건수를 부서별로 입력하세요.';
             document.getElementById('score-label').textContent = '칭찬감사카드 점수';
+        } else if (mode === 'team') {
+            document.getElementById('mode-desc').innerHTML =
+                '팀원들이 주고받은 칭찬카드 합계를 입력하여 <strong>팀 1인당 평균 점수</strong>를 확인합니다.';
+            document.getElementById('input-guide').textContent =
+                '우리 팀원들이 주고받은 칭찬카드의 합계를 부서별로 입력하세요.';
+            document.getElementById('score-label').textContent = '팀 1인당 평균 점수';
+            onTeamChange();
         } else {
             document.getElementById('mode-desc').innerHTML =
                 '내가 주고받은 칭찬카드로 <strong>1인당 점수</strong>를 계산합니다. ' +
-                '<span class="text-blue-500">모든 구성원이 균등 기여 시 1인당 목표 = 부문 목표(10점)</span>';
+                '<span class="text-blue-500">1인당 목표 = 부문 목표(10점)</span>';
             document.getElementById('input-guide').textContent =
-                '내가 주고받은 칭찬카드 건수를 부서별로 입력하세요. (인원수 나누기 없음)';
+                '내가 주고받은 칭찬카드 건수를 부서별로 입력하세요.';
             document.getElementById('score-label').textContent = '1인당 점수';
         }
 
         // Show/hide examples section
-        document.getElementById('examples-section').classList.toggle('hidden', mode !== 'individual');
+        document.getElementById('examples-section').classList.toggle('hidden', mode === 'dept');
 
         // Reset inputs when switching modes
-        document.querySelectorAll('input[data-type], #recv_lab, #sent_lab').forEach(el => {
-            el.value = 0;
-        });
+        document.querySelectorAll('input[data-type], #recv_lab, #sent_lab').forEach(el => { el.value = 0; });
 
         calculate();
     }
@@ -615,6 +670,21 @@
     function calculate() {
         const avgHC = getAvgHeadcount() || 1;
         const isIndividual = currentMode === 'individual';
+        const isTeam = currentMode === 'team';
+        const noHeadcountDiv = isIndividual; // individual: no division
+
+        // For team mode, get selected team headcount
+        let teamHC = 1;
+        let teamName = '';
+        if (isTeam) {
+            const teamId = document.getElementById('team-select').value;
+            const team = TEAMS.find(t => t.id === teamId);
+            teamHC = getTeamAvgHeadcount(teamId) || 1;
+            teamName = team ? team.name : '';
+        }
+
+        // Divisor: dept mode → dept avg, team mode → team avg, individual → 1 (no division)
+        const divisor = isIndividual ? 1 : (isTeam ? teamHC : avgHC);
 
         // Gather card inputs
         const inputs = document.querySelectorAll('input[data-type]');
@@ -635,15 +705,9 @@
             }
         });
 
-        // Core formula: individual mode skips headcount division (N cancels out)
-        let recvScore, sentScore;
-        if (isIndividual) {
-            recvScore = recvWeighted * 0.8;
-            sentScore = sentWeighted * 0.2;
-        } else {
-            recvScore = (recvWeighted / avgHC) * 0.8;
-            sentScore = (sentWeighted / avgHC) * 0.2;
-        }
+        // Core formula
+        const recvScore = (recvWeighted / divisor) * 0.8;
+        const sentScore = (sentWeighted / divisor) * 0.2;
         const totalScore = recvScore + sentScore;
 
         // Totals
@@ -653,17 +717,17 @@
         document.getElementById('weighted-sent').textContent = sentWeighted;
 
         // Formula display
-        const hcStr = avgHC % 1 === 0 ? avgHC.toString() : avgHC.toFixed(1);
         if (isIndividual) {
             document.getElementById('recv-formula').textContent =
                 `{(${recvExt5} x 5) + (${recvInt3} x 3)} x 0.8`;
             document.getElementById('sent-formula').textContent =
                 `{(${sentExt5} x 5) + (${sentInt3} x 3)} x 0.2`;
         } else {
+            const dStr = divisor % 1 === 0 ? divisor.toString() : divisor.toFixed(1);
             document.getElementById('recv-formula').textContent =
-                `[{(${recvExt5} x 5) + (${recvInt3} x 3)} / ${hcStr}] x 0.8`;
+                `[{(${recvExt5} x 5) + (${recvInt3} x 3)} / ${dStr}] x 0.8`;
             document.getElementById('sent-formula').textContent =
-                `[{(${sentExt5} x 5) + (${sentInt3} x 3)} / ${hcStr}] x 0.2`;
+                `[{(${sentExt5} x 5) + (${sentInt3} x 3)} / ${dStr}] x 0.2`;
         }
         document.getElementById('recv-result').textContent = '= ' + recvScore.toFixed(2);
         document.getElementById('sent-result').textContent = '= ' + sentScore.toFixed(2);
@@ -695,7 +759,7 @@
         const row = document.querySelector(`#grade-table tr[data-grade="${info.grade}"]`);
         if (row) row.classList.add(totalScore >= 10 ? 'bg-emerald-50' : 'bg-blue-50');
 
-        // Per-card impact (individual: fixed values, dept: divided by headcount)
+        // Per-card impact
         if (isIndividual) {
             document.getElementById('impact-desc').textContent = '1인당 점수 기준 (인원수 나누기 없음)';
             document.getElementById('impact-recv-ext').textContent = '+' + (5 * 0.8).toFixed(1);
@@ -703,33 +767,30 @@
             document.getElementById('impact-sent-ext').textContent = '+' + (5 * 0.2).toFixed(1);
             document.getElementById('impact-sent-int').textContent = '+' + (3 * 0.2).toFixed(1);
         } else {
-            document.getElementById('impact-desc').innerHTML =
-                '현재 부문 평균인원(<span id="impact-hc">' + avgHC.toFixed(1) + '</span>명) 기준';
-            document.getElementById('impact-recv-ext').textContent = '+' + ((5 / avgHC) * 0.8).toFixed(2);
-            document.getElementById('impact-recv-int').textContent = '+' + ((3 / avgHC) * 0.8).toFixed(2);
-            document.getElementById('impact-sent-ext').textContent = '+' + ((5 / avgHC) * 0.2).toFixed(2);
-            document.getElementById('impact-sent-int').textContent = '+' + ((3 / avgHC) * 0.2).toFixed(2);
+            const label = isTeam ? `${teamName} 평균인원(${teamHC.toFixed(1)}명)` : `부문 평균인원(${avgHC.toFixed(1)}명)`;
+            document.getElementById('impact-desc').textContent = label + ' 기준';
+            document.getElementById('impact-recv-ext').textContent = '+' + ((5 / divisor) * 0.8).toFixed(2);
+            document.getElementById('impact-recv-int').textContent = '+' + ((3 / divisor) * 0.8).toFixed(2);
+            document.getElementById('impact-sent-ext').textContent = '+' + ((5 / divisor) * 0.2).toFixed(2);
+            document.getElementById('impact-sent-int').textContent = '+' + ((3 / divisor) * 0.2).toFixed(2);
         }
 
         // Hint
         const hint = document.getElementById('hint-section');
         if (totalScore >= 10) {
             hint.className = 'mt-5 p-4 rounded-xl text-sm leading-relaxed bg-emerald-50 text-emerald-700';
-            hint.innerHTML = isIndividual
-                ? `<strong>목표 달성!</strong> 현재 <strong>${totalScore.toFixed(1)}점</strong>으로 1인당 목표를 충족합니다.`
-                : `<strong>목표 달성!</strong> 현재 <strong>${totalScore.toFixed(2)}점</strong>으로 최고 등급 <strong>5점</strong>을 달성했습니다.`;
+            if (isIndividual) {
+                hint.innerHTML = `<strong>목표 달성!</strong> 현재 <strong>${totalScore.toFixed(1)}점</strong>으로 1인당 목표를 충족합니다.`;
+            } else if (isTeam) {
+                hint.innerHTML = `<strong>목표 달성!</strong> ${teamName} 1인당 평균 <strong>${totalScore.toFixed(2)}점</strong>으로 목표를 충족합니다.`;
+            } else {
+                hint.innerHTML = `<strong>목표 달성!</strong> 현재 <strong>${totalScore.toFixed(2)}점</strong>으로 최고 등급 <strong>5점</strong>을 달성했습니다.`;
+            }
             hint.classList.remove('hidden');
         } else {
             const needed = 10 - totalScore;
-
-            let perExtRecv, perIntRecv;
-            if (isIndividual) {
-                perExtRecv = 5 * 0.8;   // 4.0
-                perIntRecv = 3 * 0.8;   // 2.4
-            } else {
-                perExtRecv = (5 / avgHC) * 0.8;
-                perIntRecv = (3 / avgHC) * 0.8;
-            }
+            const perExtRecv = isIndividual ? (5 * 0.8) : ((5 / divisor) * 0.8);
+            const perIntRecv = isIndividual ? (3 * 0.8) : ((3 / divisor) * 0.8);
             const needExt = Math.ceil(needed / perExtRecv);
             const needInt = Math.ceil(needed / perIntRecv);
 
@@ -739,6 +800,11 @@
                     `<strong>1인당 목표(10점)까지 ${needed.toFixed(1)}점 부족</strong><br/>` +
                     `타 본부에서 <strong>${needExt}장</strong> 더 받거나, ` +
                     `경관본부 타 부문에서 <strong>${needInt}장</strong> 더 받으면 달성`;
+            } else if (isTeam) {
+                hint.innerHTML =
+                    `<strong>${teamName} 1인당 평균 목표(10점)까지 ${needed.toFixed(2)}점 부족</strong><br/>` +
+                    `타 본부에서 <strong>${needExt}건</strong> 더 받거나, ` +
+                    `경관본부 타 부문에서 <strong>${needInt}건</strong> 더 받으면 달성`;
             } else {
                 hint.innerHTML =
                     `<strong>목표(10점)까지 ${needed.toFixed(2)}점 부족</strong><br/>` +
@@ -751,6 +817,7 @@
 
     // ── Bootstrap ──
     initHeadcount();
+    initTeamSelector();
     calculate();
 </script>
 </body>
