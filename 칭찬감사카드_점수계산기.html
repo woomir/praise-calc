@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>칭찬감사카드 점수 계산기</title>
+    <style>
+*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.bottom-0{bottom:0}.left-\[20\%\]{left:20%}.left-\[40\%\]{left:40%}.left-\[60\%\]{left:60%}.left-\[80\%\]{left:80%}.top-0{top:0}.z-10{z-index:10}.z-20{z-index:20}.-mx-2{margin-left:-.5rem;margin-right:-.5rem}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-8{margin-bottom:2rem}.ml-auto{margin-left:auto}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-8{margin-top:2rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-2{height:.5rem}.h-3{height:.75rem}.h-5{height:1.25rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-2{width:.5rem}.w-5{width:1.25rem}.w-full{width:100%}.w-px{width:1px}.min-w-\[100px\]{min-width:100px}.max-w-3xl{max-width:48rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.appearance-none{-webkit-appearance:none;-moz-appearance:none;appearance:none}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-3{gap:.75rem}.gap-5{gap:1.25rem}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-1\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.375rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.375rem*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px*(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px*var(--tw-divide-y-reverse))}.divide-slate-100>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(241 245 249/var(--tw-divide-opacity,1))}.divide-slate-50>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(248 250 252/var(--tw-divide-opacity,1))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.whitespace-nowrap{white-space:nowrap}.break-all{word-break:break-all}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-t-2{border-top-width:2px}.\!border-dashed{border-style:dashed!important}.\!border-slate-200{--tw-border-opacity:1!important;border-color:rgb(226 232 240/var(--tw-border-opacity,1))!important}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249/var(--tw-border-opacity,1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240/var(--tw-border-opacity,1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225/var(--tw-border-opacity,1))}.border-violet-100{--tw-border-opacity:1;border-color:rgb(237 233 254/var(--tw-border-opacity,1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235/var(--tw-bg-opacity,1))}.bg-blue-400{--tw-bg-opacity:1;background-color:rgb(96 165 250/var(--tw-bg-opacity,1))}.bg-blue-50{--tw-bg-opacity:1;background-color:rgb(239 246 255/var(--tw-bg-opacity,1))}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153/var(--tw-bg-opacity,1))}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245/var(--tw-bg-opacity,1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249/var(--tw-bg-opacity,1))}.bg-slate-200{--tw-bg-opacity:1;background-color:rgb(226 232 240/var(--tw-bg-opacity,1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252/var(--tw-bg-opacity,1))}.bg-slate-50\/50{background-color:rgba(248,250,252,.5)}.bg-violet-200{--tw-bg-opacity:1;background-color:rgb(221 214 254/var(--tw-bg-opacity,1))}.bg-violet-50{--tw-bg-opacity:1;background-color:rgb(245 243 255/var(--tw-bg-opacity,1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.p-1{padding:.25rem}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-1{padding-bottom:.25rem}.pl-2{padding-left:.5rem}.pl-3{padding-left:.75rem}.pl-4{padding-left:1rem}.pr-2{padding-right:.5rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.font-sans{font-family:Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-5xl{font-size:3rem;line-height:1}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.tabular-nums{--tw-numeric-spacing:tabular-nums;font-variant-numeric:var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)}.leading-relaxed{line-height:1.625}.tracking-tight{letter-spacing:-.025em}.tracking-wider{letter-spacing:.05em}.text-amber-600{--tw-text-opacity:1;color:rgb(217 119 6/var(--tw-text-opacity,1))}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250/var(--tw-text-opacity,1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246/var(--tw-text-opacity,1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235/var(--tw-text-opacity,1))}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216/var(--tw-text-opacity,1))}.text-cyan-600{--tw-text-opacity:1;color:rgb(8 145 178/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105/var(--tw-text-opacity,1))}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87/var(--tw-text-opacity,1))}.text-orange-600{--tw-text-opacity:1;color:rgb(234 88 12/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59/var(--tw-text-opacity,1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42/var(--tw-text-opacity,1))}.text-violet-600{--tw-text-opacity:1;color:rgb(124 58 237/var(--tw-text-opacity,1))}.text-violet-700{--tw-text-opacity:1;color:rgb(109 40 217/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-60{opacity:.6}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.outline-none{outline:2px solid transparent;outline-offset:2px}.outline{outline-style:solid}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:text-slate-700:hover{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.focus\:border-blue-500:focus{--tw-border-opacity:1;border-color:rgb(59 130 246/var(--tw-border-opacity,1))}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus\:ring-blue-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(59 130 246/var(--tw-ring-opacity,1))}@media (min-width:640px){.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:justify-between{justify-content:space-between}.sm\:p-6{padding:1.5rem}.sm\:px-8{padding-left:2rem;padding-right:2rem}.sm\:py-12{padding-top:3rem;padding-bottom:3rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-6xl{font-size:3.75rem;line-height:1}.sm\:text-sm{font-size:.875rem;line-height:1.25rem}}
+        html { font-size: 125%; }
+        input[type="number"] { -moz-appearance: textfield; }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button { opacity: 1; height: 36px; }
+        .num-input {
+            width: 100%; text-align: center; font-weight: 600;
+            border: 1px solid #e2e8f0; border-radius: 0.5rem;
+            padding: 0.375rem 0.25rem; font-size: 0.875rem;
+            outline: none; transition: all 0.15s;
+        }
+        .num-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59,130,246,0.15); }
+        .num-input-sm { width: 3.5rem; }
+        .score-transition { transition: color 0.3s ease; }
+        .bar-transition { transition: width 0.5s ease-out, background 0.3s ease; }
+        .card-input { width: 4.5rem; }
+        @media (max-width: 640px) {
+            .headcount-table { font-size: 0.7rem; }
+            .headcount-table .num-input { font-size: 0.7rem; padding: 0.25rem 0.125rem; }
+            .num-input-sm { width: 2.75rem; }
+            .card-input { width: 3.5rem; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen font-sans antialiased text-slate-800">
+<div class="max-w-3xl mx-auto px-4 py-8 sm:py-12">
+
+    <!-- Header -->
+    <header class="mb-8">
+        <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+            칭찬감사카드 점수 계산기
+        </h1>
+        <p class="mt-2 text-slate-500 text-sm leading-relaxed">
+            '26년 3월~8월 (6개월) | 조직 문화 개선_칭찬감사카드 | 공통지표 HR / 정량B
+        </p>
+    </header>
+
+    <!-- Org Structure -->
+    <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 mb-5">
+        <h2 class="font-semibold text-slate-800 text-sm mb-3">조직 구조 및 가중치</h2>
+        <div class="text-xs leading-relaxed bg-slate-50 rounded-xl p-4 font-mono text-slate-600 space-y-1">
+            <div class="text-slate-400">LS MnM</div>
+            <div class="pl-3">
+                <div><span class="text-amber-600 font-bold">x5</span> <span class="text-slate-500">사업본부</span> <span class="text-slate-300">── 타 본부/사업부</span></div>
+                <div><span class="text-amber-600 font-bold">x5</span> <span class="text-slate-500">제련소</span> <span class="text-slate-300">── 타 본부/사업부</span></div>
+                <div><span class="text-amber-600 font-bold">x5</span> <span class="text-slate-500">배터리소재사업부</span> <span class="text-slate-300">── 타 본부/사업부</span></div>
+                <div class="text-slate-500">경영관리본부</div>
+                <div class="pl-4">
+                    <div><span class="text-amber-600 font-bold">x3</span> <span class="text-slate-500">기타 부문</span> <span class="text-slate-300">── 동일 본부 내 타 부문</span></div>
+                    <div class="text-blue-600 font-bold">
+                        <span class="inline-block w-5 text-center">*</span> 연구소 (우리 부문)
+                        <span class="text-slate-300 font-normal">── 동일 부문, 미반영</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
+            * 연구소 내부(팀 간) 칭찬카드는 동일 부문이므로 산식에 반영되지 않습니다.
+        </p>
+    </section>
+
+    <!-- Monthly Headcount -->
+    <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 mb-5">
+        <button onclick="toggleHeadcount()" class="w-full flex items-center justify-between">
+            <div>
+                <h2 class="font-semibold text-slate-800 text-sm">연구소 월별 인원 현황</h2>
+                <p class="text-xs text-slate-400 mt-0.5">
+                    부문 평균인원: <strong id="avg-headcount-summary" class="text-blue-600">36.0명</strong>
+                </p>
+            </div>
+            <svg id="hc-chevron" class="w-5 h-5 text-slate-400 transition-transform" fill="none"
+                 stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+        </button>
+
+        <div id="hc-content" class="hidden mt-4">
+            <div class="overflow-x-auto -mx-2 px-2">
+                <table class="w-full text-xs headcount-table">
+                    <thead>
+                        <tr class="text-slate-400">
+                            <th class="text-left py-1.5 pr-2 font-medium">팀</th>
+                            <th class="py-1.5 px-1 font-medium">3월</th>
+                            <th class="py-1.5 px-1 font-medium">4월</th>
+                            <th class="py-1.5 px-1 font-medium">5월</th>
+                            <th class="py-1.5 px-1 font-medium">6월</th>
+                            <th class="py-1.5 px-1 font-medium">7월</th>
+                            <th class="py-1.5 px-1 font-medium">8월</th>
+                            <th class="py-1.5 pl-2 font-medium text-blue-500">평균</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hc-tbody"></tbody>
+                    <tfoot>
+                        <tr class="border-t border-slate-200 font-bold text-slate-700">
+                            <td class="py-2 pr-2">합계</td>
+                            <td id="sum-3" class="py-2 px-1 text-center">36</td>
+                            <td id="sum-4" class="py-2 px-1 text-center">36</td>
+                            <td id="sum-5" class="py-2 px-1 text-center">36</td>
+                            <td id="sum-6" class="py-2 px-1 text-center">36</td>
+                            <td id="sum-7" class="py-2 px-1 text-center">36</td>
+                            <td id="sum-8" class="py-2 px-1 text-center">36</td>
+                            <td id="sum-avg" class="py-2 pl-2 text-center text-blue-600">36.0</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-3">
+                * 대상: 팀장, 전문직, 행정직 (월말 기준 인원수 입력)
+            </p>
+        </div>
+    </section>
+
+    <!-- Mode Toggle -->
+    <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 mb-5">
+        <div class="flex rounded-xl bg-slate-100 p-1" role="tablist">
+            <button onclick="setMode('dept')" id="btn-dept" role="tab"
+                    class="flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all
+                           bg-white text-slate-900 shadow-sm">
+                부문 전체
+            </button>
+            <button onclick="setMode('team')" id="btn-team" role="tab"
+                    class="flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all
+                           text-slate-500 hover:text-slate-700">
+                팀별
+            </button>
+            <button onclick="setMode('individual')" id="btn-individual" role="tab"
+                    class="flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all
+                           text-slate-500 hover:text-slate-700">
+                개인
+            </button>
+        </div>
+
+        <!-- Team selector (shown in team mode) -->
+        <div id="team-selector" class="mt-3 hidden">
+            <label for="team-select" class="block text-xs font-medium text-slate-500 mb-1">소속 팀 선택</label>
+            <select id="team-select" onchange="onTeamChange()"
+                    class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm font-semibold
+                           text-slate-700 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                           outline-none transition appearance-none"
+                    style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22%2394a3b8%22><path fill-rule=%22evenodd%22 d=%22M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z%22 clip-rule=%22evenodd%22/></svg>'); background-position: right 0.75rem center; background-repeat: no-repeat; background-size: 1.25rem;">
+            </select>
+            <p id="team-headcount-info" class="mt-1 text-xs text-slate-400"></p>
+        </div>
+
+        <p id="mode-desc" class="mt-2 text-xs text-slate-400">
+            연구소 전체의 칭찬카드 횟수를 입력하여 부문 점수를 산출합니다.
+        </p>
+    </section>
+
+    <!-- Card Input Table -->
+    <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 mb-5">
+        <h2 class="font-semibold text-slate-800 text-sm mb-1">칭찬카드 입력</h2>
+        <p class="text-xs text-slate-400 mb-4" id="input-guide">
+            연구소 소속원이 주고받은 칭찬카드의 총 건수를 부서별로 입력하세요.
+        </p>
+
+        <div class="overflow-x-auto -mx-2 px-2">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="text-xs text-slate-400 border-b border-slate-100">
+                        <th class="text-left py-2 pr-2 font-medium">상대 부서</th>
+                        <th class="py-2 px-1 font-medium text-center">가중치</th>
+                        <th class="py-2 px-2 font-medium text-center">
+                            <span class="inline-flex items-center gap-1">
+                                <span class="w-2 h-2 rounded-full bg-blue-400"></span>받은
+                            </span>
+                        </th>
+                        <th class="py-2 px-2 font-medium text-center">
+                            <span class="inline-flex items-center gap-1">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>보낸
+                            </span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-50">
+                    <!-- 타 본부/사업부 -->
+                    <tr>
+                        <td class="py-2.5 pr-2">
+                            <div class="text-slate-700">사업본부</div>
+                            <div class="text-[11px] text-slate-400">타 본부/사업부</div>
+                        </td>
+                        <td class="py-2.5 px-1 text-center">
+                            <span class="text-xs font-mono font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">x5</span>
+                        </td>
+                        <td class="py-2.5 px-2 text-center">
+                            <input type="number" data-type="recv" data-weight="5" value="0" min="0"
+                                   class="num-input card-input" oninput="calculate()" />
+                        </td>
+                        <td class="py-2.5 px-2 text-center">
+                            <input type="number" data-type="sent" data-weight="5" value="0" min="0"
+                                   class="num-input card-input" oninput="calculate()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2.5 pr-2">
+                            <div class="text-slate-700">제련소</div>
+                            <div class="text-[11px] text-slate-400">타 본부/사업부</div>
+                        </td>
+                        <td class="py-2.5 px-1 text-center">
+                            <span class="text-xs font-mono font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">x5</span>
+                        </td>
+                        <td class="py-2.5 px-2 text-center">
+                            <input type="number" data-type="recv" data-weight="5" value="0" min="0"
+                                   class="num-input card-input" oninput="calculate()" />
+                        </td>
+                        <td class="py-2.5 px-2 text-center">
+                            <input type="number" data-type="sent" data-weight="5" value="0" min="0"
+                                   class="num-input card-input" oninput="calculate()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-2.5 pr-2">
+                            <div class="text-slate-700">배터리소재사업부</div>
+                            <div class="text-[11px] text-slate-400">타 본부/사업부</div>
+                        </td>
+                        <td class="py-2.5 px-1 text-center">
+                            <span class="text-xs font-mono font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">x5</span>
+                        </td>
+                        <td class="py-2.5 px-2 text-center">
+                            <input type="number" data-type="recv" data-weight="5" value="0" min="0"
+                                   class="num-input card-input" oninput="calculate()" />
+                        </td>
+                        <td class="py-2.5 px-2 text-center">
+                            <input type="number" data-type="sent" data-weight="5" value="0" min="0"
+                                   class="num-input card-input" oninput="calculate()" />
+                        </td>
+                    </tr>
+                    <!-- 동일 본부 내 타 부문 -->
+                    <tr class="border-t-2 border-slate-200">
+                        <td class="py-2.5 pr-2">
+                            <div class="text-slate-700">경영관리본부 (연구소 외)</div>
+                            <div class="text-[11px] text-slate-400">동일 본부 내 타 부문</div>
+                        </td>
+                        <td class="py-2.5 px-1 text-center">
+                            <span class="text-xs font-mono font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">x3</span>
+                        </td>
+                        <td class="py-2.5 px-2 text-center">
+                            <input type="number" data-type="recv" data-weight="3" value="0" min="0"
+                                   class="num-input card-input" oninput="calculate()" />
+                        </td>
+                        <td class="py-2.5 px-2 text-center">
+                            <input type="number" data-type="sent" data-weight="3" value="0" min="0"
+                                   class="num-input card-input" oninput="calculate()" />
+                        </td>
+                    </tr>
+                    <!-- 연구소 내부 (미반영) -->
+                    <tr class="bg-slate-50/50 opacity-60">
+                        <td class="py-2.5 pr-2">
+                            <div class="text-slate-500">연구소 내부 (참고용)</div>
+                            <div class="text-[11px] text-slate-400">동일 부문 - 미반영</div>
+                        </td>
+                        <td class="py-2.5 px-1 text-center">
+                            <span class="text-xs font-mono font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded">--</span>
+                        </td>
+                        <td class="py-2.5 px-2 text-center">
+                            <input type="number" id="recv_lab" value="0" min="0"
+                                   class="num-input card-input !border-dashed !border-slate-200" oninput="calculate()" />
+                        </td>
+                        <td class="py-2.5 px-2 text-center">
+                            <input type="number" id="sent_lab" value="0" min="0"
+                                   class="num-input card-input !border-dashed !border-slate-200" oninput="calculate()" />
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="border-t-2 border-slate-200 text-xs font-bold text-slate-600">
+                        <td class="py-2.5 pr-2">합계 (반영분)</td>
+                        <td class="py-2.5 px-1"></td>
+                        <td id="total-recv" class="py-2.5 px-2 text-center text-blue-700">0건</td>
+                        <td id="total-sent" class="py-2.5 px-2 text-center text-emerald-700">0건</td>
+                    </tr>
+                    <tr class="text-xs text-slate-400">
+                        <td class="pb-1 pr-2">가중 합계</td>
+                        <td class="pb-1 px-1"></td>
+                        <td id="weighted-recv" class="pb-1 px-2 text-center">0</td>
+                        <td id="weighted-sent" class="pb-1 px-2 text-center">0</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 mb-5">
+        <h2 class="font-semibold text-slate-800 mb-4">산출 결과</h2>
+
+        <!-- Formula Breakdown -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-5 space-y-3">
+            <div>
+                <div class="text-[11px] font-medium text-slate-400 uppercase tracking-wider mb-1">
+                    받은 횟수 점수 (80%)
+                </div>
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                    <code id="recv-formula" class="text-xs sm:text-sm text-slate-500 break-all">
+                        [{(0 x 5) + (0 x 3)} / 36.0] x 0.8
+                    </code>
+                    <span id="recv-result" class="text-sm font-bold text-blue-700 tabular-nums">= 0.00</span>
+                </div>
+            </div>
+            <div>
+                <div class="text-[11px] font-medium text-slate-400 uppercase tracking-wider mb-1">
+                    준 횟수 점수 (20%)
+                </div>
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                    <code id="sent-formula" class="text-xs sm:text-sm text-slate-500 break-all">
+                        [{(0 x 5) + (0 x 3)} / 36.0] x 0.2
+                    </code>
+                    <span id="sent-result" class="text-sm font-bold text-emerald-700 tabular-nums">= 0.00</span>
+                </div>
+            </div>
+            <hr class="border-slate-200" />
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold text-slate-600">합산</span>
+                <span id="total-formula" class="text-sm font-bold text-slate-800 tabular-nums">0.00 + 0.00 = 0.00</span>
+            </div>
+        </div>
+
+        <!-- Score & Grade -->
+        <div class="flex items-stretch gap-5">
+            <div class="flex-1 text-center">
+                <div id="score-display"
+                     class="text-5xl sm:text-6xl font-black tabular-nums score-transition text-slate-300">
+                    0.00
+                </div>
+                <div class="text-xs text-slate-400 mt-1" id="score-label">칭찬감사카드 점수</div>
+
+                <!-- Progress Bar -->
+                <div class="mt-4">
+                    <div class="flex justify-between text-[11px] text-slate-400 mb-1">
+                        <span>0</span><span>2</span><span>4</span><span>6</span><span>8</span>
+                        <span class="font-semibold text-blue-600">10 (목표)</span>
+                    </div>
+                    <div class="h-3 bg-slate-100 rounded-full overflow-hidden relative">
+                        <div class="absolute top-0 bottom-0 left-[20%] w-px bg-slate-200 z-10"></div>
+                        <div class="absolute top-0 bottom-0 left-[40%] w-px bg-slate-200 z-10"></div>
+                        <div class="absolute top-0 bottom-0 left-[60%] w-px bg-slate-200 z-10"></div>
+                        <div class="absolute top-0 bottom-0 left-[80%] w-px bg-slate-200 z-10"></div>
+                        <div id="progress-bar" class="h-full rounded-full bar-transition relative z-20"
+                             style="width:0%; background:linear-gradient(90deg,#94a3b8,#cbd5e1)"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center justify-center px-5 sm:px-8 py-4 bg-slate-50 rounded-2xl min-w-[100px]">
+                <div id="grade-display" class="text-5xl font-black score-transition text-slate-300">0</div>
+                <div class="text-[11px] text-slate-400 mt-1 font-medium">평가점수</div>
+                <div class="text-[10px] text-slate-300">(5점 만점)</div>
+            </div>
+        </div>
+
+        <!-- Hint -->
+        <div id="hint-section" class="mt-5 p-4 rounded-xl text-sm leading-relaxed hidden"></div>
+    </section>
+
+    <!-- Per-Card Impact -->
+    <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 mb-5">
+        <button onclick="toggleImpact()" class="w-full flex items-center justify-between">
+            <h3 class="font-semibold text-slate-700 text-sm">카드 1건당 점수 기여도</h3>
+            <svg id="impact-chevron" class="w-5 h-5 text-slate-400 transition-transform" fill="none"
+                 stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+        </button>
+        <div id="impact-content" class="hidden mt-4">
+            <p id="impact-desc" class="text-xs text-slate-400 mb-3">현재 부문 평균인원(<span id="impact-hc">36.0</span>명) 기준</p>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="rounded-lg bg-blue-50 p-3">
+                    <div class="text-[11px] text-blue-400 font-medium mb-2">받은 카드 (80%)</div>
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-600">타 본부 x5</span>
+                            <span id="impact-recv-ext" class="font-bold text-blue-700 tabular-nums">+0.11</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-600">본부내 타부문 x3</span>
+                            <span id="impact-recv-int" class="font-bold text-blue-700 tabular-nums">+0.07</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-lg bg-emerald-50 p-3">
+                    <div class="text-[11px] text-emerald-400 font-medium mb-2">보낸 카드 (20%)</div>
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-600">타 본부 x5</span>
+                            <span id="impact-sent-ext" class="font-bold text-emerald-700 tabular-nums">+0.03</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-600">본부내 타부문 x3</span>
+                            <span id="impact-sent-int" class="font-bold text-emerald-700 tabular-nums">+0.02</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Individual Target Examples (shown in individual mode) -->
+    <section id="examples-section" class="bg-white rounded-2xl border border-violet-100 shadow-sm p-5 sm:p-6 mb-5 hidden">
+        <h3 class="font-semibold text-slate-800 text-sm mb-1">1인당 목표 달성 조합 예시</h3>
+        <p class="text-xs text-slate-400 mb-3">모든 연구원이 아래 수준으로 참여하면 부문 목표(10점) 달성</p>
+        <div class="space-y-2">
+            <div class="flex items-center gap-3 bg-violet-50 rounded-lg p-3 text-xs">
+                <span class="shrink-0 w-5 h-5 rounded-full bg-violet-200 text-violet-700 font-bold flex items-center justify-center text-[11px]">1</span>
+                <span class="text-slate-700">타 본부에서 <strong>2장 받고</strong> + 타 본부에 <strong>2장 보내기</strong></span>
+                <span class="ml-auto font-mono font-bold text-violet-600 whitespace-nowrap">= 10.0</span>
+            </div>
+            <div class="flex items-center gap-3 bg-violet-50 rounded-lg p-3 text-xs">
+                <span class="shrink-0 w-5 h-5 rounded-full bg-violet-200 text-violet-700 font-bold flex items-center justify-center text-[11px]">2</span>
+                <span class="text-slate-700">타 본부에서 <strong>3장 받기</strong> (보내기 불필요)</span>
+                <span class="ml-auto font-mono font-bold text-violet-600 whitespace-nowrap">= 12.0</span>
+            </div>
+            <div class="flex items-center gap-3 bg-violet-50 rounded-lg p-3 text-xs">
+                <span class="shrink-0 w-5 h-5 rounded-full bg-violet-200 text-violet-700 font-bold flex items-center justify-center text-[11px]">3</span>
+                <span class="text-slate-700">타 본부에서 <strong>1장 받고</strong> + 경관본부 타부문에서 <strong>2장 받고</strong> + 타 본부에 <strong>1장 보내기</strong></span>
+                <span class="ml-auto font-mono font-bold text-violet-600 whitespace-nowrap">= 9.8</span>
+            </div>
+            <div class="flex items-center gap-3 bg-violet-50 rounded-lg p-3 text-xs">
+                <span class="shrink-0 w-5 h-5 rounded-full bg-violet-200 text-violet-700 font-bold flex items-center justify-center text-[11px]">4</span>
+                <span class="text-slate-700">경관본부 타부문에서 <strong>4장 받고</strong> + 경관본부 타부문에 <strong>1장 보내기</strong></span>
+                <span class="ml-auto font-mono font-bold text-violet-600 whitespace-nowrap">= 10.2</span>
+            </div>
+        </div>
+        <div class="mt-3 p-3 bg-slate-50 rounded-lg text-[11px] text-slate-400 leading-relaxed">
+            <strong class="text-slate-500">원리:</strong>
+            부문 점수 산식에서 총 가중합을 평균인원(N)으로 나누므로, 모든 구성원이 균등 기여 시 N이 상쇄됩니다.
+            따라서 <strong class="text-slate-500">1인당 목표 = 부문 목표(10점)</strong>과 동일합니다.
+        </div>
+    </section>
+
+    <!-- Grade Reference -->
+    <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6">
+        <h3 class="font-semibold text-slate-700 text-sm mb-3">평가 등급 기준표</h3>
+        <div class="overflow-hidden rounded-xl border border-slate-200">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="bg-slate-50">
+                        <th class="px-4 py-2.5 text-left font-medium text-slate-500 text-xs">칭찬감사카드 점수</th>
+                        <th class="px-4 py-2.5 text-center font-medium text-slate-500 text-xs">평가점수</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100" id="grade-table">
+                    <tr data-grade="5"><td class="px-4 py-2 text-slate-700">10점 이상</td><td class="px-4 py-2 text-center font-bold text-emerald-600">5</td></tr>
+                    <tr data-grade="4"><td class="px-4 py-2 text-slate-700">8점 이상 ~ 10점 미만</td><td class="px-4 py-2 text-center font-bold text-blue-600">4</td></tr>
+                    <tr data-grade="3"><td class="px-4 py-2 text-slate-700">6점 이상 ~ 8점 미만</td><td class="px-4 py-2 text-center font-bold text-cyan-600">3</td></tr>
+                    <tr data-grade="2"><td class="px-4 py-2 text-slate-700">4점 이상 ~ 6점 미만</td><td class="px-4 py-2 text-center font-bold text-amber-600">2</td></tr>
+                    <tr data-grade="1"><td class="px-4 py-2 text-slate-700">2점 이상 ~ 4점 미만</td><td class="px-4 py-2 text-center font-bold text-orange-600">1</td></tr>
+                    <tr data-grade="0"><td class="px-4 py-2 text-slate-700">2점 미만</td><td class="px-4 py-2 text-center font-bold text-slate-400">0</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-3 p-3 bg-slate-50 rounded-lg text-xs text-slate-400 leading-relaxed">
+            <strong class="text-slate-500">산식:</strong>
+            받은 횟수 점수(80%) + 준 횟수 점수(20%)<br/>
+            [{(타 본부/사업부 횟수 x 5) + (동일 본부/사업부 내 타 부문 횟수 x 3)} / 부문 평균인원] x 비율
+        </div>
+    </section>
+
+    <footer class="mt-8 text-center text-xs text-slate-300">
+        LS MnM 연구소 칭찬감사카드 점수 계산기 | 2026
+    </footer>
+</div>
+
+<script>
+    // ── Config ──
+    const TEAMS = [
+        { id: 'planning',      name: '연구기획팀',       defaultCount: 4 },
+        { id: 'energy',        name: '에너지소재개발팀',  defaultCount: 6 },
+        { id: 'process',       name: '공정개발팀',       defaultCount: 13 },
+        { id: 'ag_research',   name: 'Ag소재연구팀',     defaultCount: 8 },
+        { id: 'ag_sales',      name: 'Ag소재영업팀',     defaultCount: 2 },
+        { id: 'ag_production', name: 'Ag소재생산팀',     defaultCount: 3 },
+    ];
+    const MONTHS = [3, 4, 5, 6, 7, 8];
+
+    // ── State ──
+    let currentMode = 'dept';
+    let impactOpen = false;
+    let hcOpen = false;
+    // headcount[teamId][month] = number
+    const headcount = {};
+
+    // ── Init headcount table ──
+    function initHeadcount() {
+        const tbody = document.getElementById('hc-tbody');
+        TEAMS.forEach(team => {
+            headcount[team.id] = {};
+            const tr = document.createElement('tr');
+            tr.className = 'text-slate-600';
+
+            const tdName = document.createElement('td');
+            tdName.className = 'py-1.5 pr-2 text-slate-700 whitespace-nowrap';
+            tdName.textContent = team.name;
+            tr.appendChild(tdName);
+
+            MONTHS.forEach(m => {
+                headcount[team.id][m] = team.defaultCount;
+                const td = document.createElement('td');
+                td.className = 'py-1.5 px-1 text-center';
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.min = '0';
+                input.value = team.defaultCount;
+                input.className = 'num-input num-input-sm';
+                input.dataset.team = team.id;
+                input.dataset.month = m;
+                input.addEventListener('input', function() {
+                    headcount[team.id][m] = Math.max(0, parseInt(this.value) || 0);
+                    updateHeadcountSummary();
+                    calculate();
+                });
+                td.appendChild(input);
+                tr.appendChild(td);
+            });
+
+            // Average cell
+            const tdAvg = document.createElement('td');
+            tdAvg.className = 'py-1.5 pl-2 text-center font-semibold text-blue-600';
+            tdAvg.id = `avg-${team.id}`;
+            tdAvg.textContent = team.defaultCount.toFixed(1);
+            tr.appendChild(tdAvg);
+
+            tbody.appendChild(tr);
+        });
+        updateHeadcountSummary();
+    }
+
+    function getAvgHeadcount() {
+        let monthlyTotals = MONTHS.map(m =>
+            TEAMS.reduce((sum, t) => sum + (headcount[t.id][m] || 0), 0)
+        );
+        return monthlyTotals.reduce((a, b) => a + b, 0) / MONTHS.length;
+    }
+
+    function updateHeadcountSummary() {
+        // Per-team averages
+        TEAMS.forEach(team => {
+            const vals = MONTHS.map(m => headcount[team.id][m] || 0);
+            const avg = vals.reduce((a, b) => a + b, 0) / MONTHS.length;
+            document.getElementById(`avg-${team.id}`).textContent = avg.toFixed(1);
+        });
+
+        // Monthly sums
+        MONTHS.forEach(m => {
+            const sum = TEAMS.reduce((s, t) => s + (headcount[t.id][m] || 0), 0);
+            document.getElementById(`sum-${m}`).textContent = sum;
+        });
+
+        // Overall average
+        const avg = getAvgHeadcount();
+        document.getElementById('sum-avg').textContent = avg.toFixed(1);
+        document.getElementById('avg-headcount-summary').textContent = avg.toFixed(1) + '명';
+        document.getElementById('impact-hc').textContent = avg.toFixed(1);
+    }
+
+    // ── Toggle sections ──
+    function toggleHeadcount() {
+        hcOpen = !hcOpen;
+        document.getElementById('hc-content').classList.toggle('hidden', !hcOpen);
+        document.getElementById('hc-chevron').style.transform = hcOpen ? 'rotate(180deg)' : '';
+    }
+
+    function toggleImpact() {
+        impactOpen = !impactOpen;
+        document.getElementById('impact-content').classList.toggle('hidden', !impactOpen);
+        document.getElementById('impact-chevron').style.transform = impactOpen ? 'rotate(180deg)' : '';
+    }
+
+    // ── Team selector init ──
+    function initTeamSelector() {
+        const select = document.getElementById('team-select');
+        TEAMS.forEach(team => {
+            const opt = document.createElement('option');
+            opt.value = team.id;
+            opt.textContent = team.name;
+            select.appendChild(opt);
+        });
+    }
+
+    function getTeamAvgHeadcount(teamId) {
+        const vals = MONTHS.map(m => headcount[teamId][m] || 0);
+        return vals.reduce((a, b) => a + b, 0) / MONTHS.length;
+    }
+
+    function onTeamChange() {
+        const teamId = document.getElementById('team-select').value;
+        const team = TEAMS.find(t => t.id === teamId);
+        const teamAvg = getTeamAvgHeadcount(teamId);
+        document.getElementById('team-headcount-info').textContent =
+            `${team.name} 평균인원: ${teamAvg.toFixed(1)}명`;
+        // Reset inputs
+        document.querySelectorAll('input[data-type], #recv_lab, #sent_lab').forEach(el => { el.value = 0; });
+        calculate();
+    }
+
+    // ── Mode ──
+    function setMode(mode) {
+        currentMode = mode;
+        const active = 'flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all bg-white text-slate-900 shadow-sm';
+        const inactive = 'flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all text-slate-500 hover:text-slate-700';
+
+        document.getElementById('btn-dept').className = mode === 'dept' ? active : inactive;
+        document.getElementById('btn-team').className = mode === 'team' ? active : inactive;
+        document.getElementById('btn-individual').className = mode === 'individual' ? active : inactive;
+
+        // Team selector visibility
+        document.getElementById('team-selector').classList.toggle('hidden', mode !== 'team');
+
+        if (mode === 'dept') {
+            document.getElementById('mode-desc').textContent =
+                '연구소 전체의 칭찬카드 횟수를 입력하여 부문 점수를 산출합니다.';
+            document.getElementById('input-guide').textContent =
+                '연구소 소속원이 주고받은 칭찬카드의 총 건수를 부서별로 입력하세요.';
+            document.getElementById('score-label').textContent = '칭찬감사카드 점수';
+        } else if (mode === 'team') {
+            document.getElementById('mode-desc').innerHTML =
+                '팀원들이 주고받은 칭찬카드 합계를 입력하여 <strong>팀 1인당 평균 점수</strong>를 확인합니다.';
+            document.getElementById('input-guide').textContent =
+                '우리 팀원들이 주고받은 칭찬카드의 합계를 부서별로 입력하세요.';
+            document.getElementById('score-label').textContent = '팀 1인당 평균 점수';
+            onTeamChange();
+        } else {
+            document.getElementById('mode-desc').innerHTML =
+                '내가 주고받은 칭찬카드로 <strong>1인당 점수</strong>를 계산합니다. ' +
+                '<span class="text-blue-500">1인당 목표 = 부문 목표(10점)</span>';
+            document.getElementById('input-guide').textContent =
+                '내가 주고받은 칭찬카드 건수를 부서별로 입력하세요.';
+            document.getElementById('score-label').textContent = '1인당 점수';
+        }
+
+        // Show/hide examples section
+        document.getElementById('examples-section').classList.toggle('hidden', mode === 'dept');
+
+        // Reset inputs when switching modes
+        document.querySelectorAll('input[data-type], #recv_lab, #sent_lab').forEach(el => { el.value = 0; });
+
+        calculate();
+    }
+
+    // ── Grade info ──
+    function getGradeInfo(score) {
+        if (score >= 10) return { grade: 5, color: '#059669' };
+        if (score >= 8)  return { grade: 4, color: '#2563eb' };
+        if (score >= 6)  return { grade: 3, color: '#0891b2' };
+        if (score >= 4)  return { grade: 2, color: '#d97706' };
+        if (score >= 2)  return { grade: 1, color: '#ea580c' };
+        return { grade: 0, color: '#94a3b8' };
+    }
+
+    // ── Core calculation ──
+    function calculate() {
+        const avgHC = getAvgHeadcount() || 1;
+        const isIndividual = currentMode === 'individual';
+        const isTeam = currentMode === 'team';
+        const noHeadcountDiv = isIndividual; // individual: no division
+
+        // For team mode, get selected team headcount
+        let teamHC = 1;
+        let teamName = '';
+        if (isTeam) {
+            const teamId = document.getElementById('team-select').value;
+            const team = TEAMS.find(t => t.id === teamId);
+            teamHC = getTeamAvgHeadcount(teamId) || 1;
+            teamName = team ? team.name : '';
+        }
+
+        // Divisor: dept mode → dept avg, team mode → team avg, individual → 1 (no division)
+        const divisor = isIndividual ? 1 : (isTeam ? teamHC : avgHC);
+
+        // Gather card inputs
+        const inputs = document.querySelectorAll('input[data-type]');
+        let recvWeighted = 0, sentWeighted = 0, recvRaw = 0, sentRaw = 0;
+        let recvExt5 = 0, recvInt3 = 0, sentExt5 = 0, sentInt3 = 0;
+
+        inputs.forEach(input => {
+            const val = Math.max(0, parseInt(input.value) || 0);
+            const w = parseInt(input.dataset.weight);
+            if (input.dataset.type === 'recv') {
+                recvRaw += val;
+                recvWeighted += val * w;
+                if (w === 5) recvExt5 += val; else recvInt3 += val;
+            } else {
+                sentRaw += val;
+                sentWeighted += val * w;
+                if (w === 5) sentExt5 += val; else sentInt3 += val;
+            }
+        });
+
+        // Core formula
+        const recvScore = (recvWeighted / divisor) * 0.8;
+        const sentScore = (sentWeighted / divisor) * 0.2;
+        const totalScore = recvScore + sentScore;
+
+        // Totals
+        document.getElementById('total-recv').textContent = recvRaw + '건';
+        document.getElementById('total-sent').textContent = sentRaw + '건';
+        document.getElementById('weighted-recv').textContent = recvWeighted;
+        document.getElementById('weighted-sent').textContent = sentWeighted;
+
+        // Formula display
+        if (isIndividual) {
+            document.getElementById('recv-formula').textContent =
+                `{(${recvExt5} x 5) + (${recvInt3} x 3)} x 0.8`;
+            document.getElementById('sent-formula').textContent =
+                `{(${sentExt5} x 5) + (${sentInt3} x 3)} x 0.2`;
+        } else {
+            const dStr = divisor % 1 === 0 ? divisor.toString() : divisor.toFixed(1);
+            document.getElementById('recv-formula').textContent =
+                `[{(${recvExt5} x 5) + (${recvInt3} x 3)} / ${dStr}] x 0.8`;
+            document.getElementById('sent-formula').textContent =
+                `[{(${sentExt5} x 5) + (${sentInt3} x 3)} / ${dStr}] x 0.2`;
+        }
+        document.getElementById('recv-result').textContent = '= ' + recvScore.toFixed(2);
+        document.getElementById('sent-result').textContent = '= ' + sentScore.toFixed(2);
+        document.getElementById('total-formula').textContent =
+            `${recvScore.toFixed(2)} + ${sentScore.toFixed(2)} = ${totalScore.toFixed(2)}`;
+
+        // Score display
+        const scoreEl = document.getElementById('score-display');
+        scoreEl.textContent = totalScore.toFixed(2);
+        const info = getGradeInfo(totalScore);
+        scoreEl.style.color = info.color;
+
+        const gradeEl = document.getElementById('grade-display');
+        gradeEl.textContent = info.grade;
+        gradeEl.style.color = info.color;
+
+        // Progress bar
+        const progressBar = document.getElementById('progress-bar');
+        progressBar.style.width = Math.min(100, (totalScore / 10) * 100) + '%';
+        if (totalScore >= 10) progressBar.style.background = 'linear-gradient(90deg,#059669,#10b981)';
+        else if (totalScore >= 6) progressBar.style.background = 'linear-gradient(90deg,#3b82f6,#60a5fa)';
+        else if (totalScore >= 2) progressBar.style.background = 'linear-gradient(90deg,#f59e0b,#fbbf24)';
+        else progressBar.style.background = 'linear-gradient(90deg,#94a3b8,#cbd5e1)';
+
+        // Highlight grade table
+        document.querySelectorAll('#grade-table tr').forEach(tr => {
+            tr.classList.remove('bg-blue-50', 'bg-emerald-50');
+        });
+        const row = document.querySelector(`#grade-table tr[data-grade="${info.grade}"]`);
+        if (row) row.classList.add(totalScore >= 10 ? 'bg-emerald-50' : 'bg-blue-50');
+
+        // Per-card impact
+        if (isIndividual) {
+            document.getElementById('impact-desc').textContent = '1인당 점수 기준 (인원수 나누기 없음)';
+            document.getElementById('impact-recv-ext').textContent = '+' + (5 * 0.8).toFixed(1);
+            document.getElementById('impact-recv-int').textContent = '+' + (3 * 0.8).toFixed(1);
+            document.getElementById('impact-sent-ext').textContent = '+' + (5 * 0.2).toFixed(1);
+            document.getElementById('impact-sent-int').textContent = '+' + (3 * 0.2).toFixed(1);
+        } else {
+            const label = isTeam ? `${teamName} 평균인원(${teamHC.toFixed(1)}명)` : `부문 평균인원(${avgHC.toFixed(1)}명)`;
+            document.getElementById('impact-desc').textContent = label + ' 기준';
+            document.getElementById('impact-recv-ext').textContent = '+' + ((5 / divisor) * 0.8).toFixed(2);
+            document.getElementById('impact-recv-int').textContent = '+' + ((3 / divisor) * 0.8).toFixed(2);
+            document.getElementById('impact-sent-ext').textContent = '+' + ((5 / divisor) * 0.2).toFixed(2);
+            document.getElementById('impact-sent-int').textContent = '+' + ((3 / divisor) * 0.2).toFixed(2);
+        }
+
+        // Hint
+        const hint = document.getElementById('hint-section');
+        if (totalScore >= 10) {
+            hint.className = 'mt-5 p-4 rounded-xl text-sm leading-relaxed bg-emerald-50 text-emerald-700';
+            if (isIndividual) {
+                hint.innerHTML = `<strong>목표 달성!</strong> 현재 <strong>${totalScore.toFixed(1)}점</strong>으로 1인당 목표를 충족합니다.`;
+            } else if (isTeam) {
+                hint.innerHTML = `<strong>목표 달성!</strong> ${teamName} 1인당 평균 <strong>${totalScore.toFixed(2)}점</strong>으로 목표를 충족합니다.`;
+            } else {
+                hint.innerHTML = `<strong>목표 달성!</strong> 현재 <strong>${totalScore.toFixed(2)}점</strong>으로 최고 등급 <strong>5점</strong>을 달성했습니다.`;
+            }
+            hint.classList.remove('hidden');
+        } else {
+            const needed = 10 - totalScore;
+            const perExtRecv = isIndividual ? (5 * 0.8) : ((5 / divisor) * 0.8);
+            const perIntRecv = isIndividual ? (3 * 0.8) : ((3 / divisor) * 0.8);
+            const needExt = Math.ceil(needed / perExtRecv);
+            const needInt = Math.ceil(needed / perIntRecv);
+
+            hint.className = 'mt-5 p-4 rounded-xl text-sm leading-relaxed bg-blue-50 text-blue-700';
+            if (isIndividual) {
+                hint.innerHTML =
+                    `<strong>1인당 목표(10점)까지 ${needed.toFixed(1)}점 부족</strong><br/>` +
+                    `타 본부에서 <strong>${needExt}장</strong> 더 받거나, ` +
+                    `경관본부 타 부문에서 <strong>${needInt}장</strong> 더 받으면 달성`;
+            } else if (isTeam) {
+                hint.innerHTML =
+                    `<strong>${teamName} 1인당 평균 목표(10점)까지 ${needed.toFixed(2)}점 부족</strong><br/>` +
+                    `타 본부에서 <strong>${needExt}건</strong> 더 받거나, ` +
+                    `경관본부 타 부문에서 <strong>${needInt}건</strong> 더 받으면 달성`;
+            } else {
+                hint.innerHTML =
+                    `<strong>목표(10점)까지 ${needed.toFixed(2)}점 부족</strong><br/>` +
+                    `연구소 전체 기준, 타 본부/사업부에서 <strong>${needExt}건</strong> 더 받거나, ` +
+                    `경영관리본부 타 부문에서 <strong>${needInt}건</strong> 더 받으면 달성 가능`;
+            }
+            hint.classList.remove('hidden');
+        }
+    }
+
+    // ── Bootstrap ──
+    initHeadcount();
+    initTeamSelector();
+    calculate();
+</script>
+</body>
+</html>
