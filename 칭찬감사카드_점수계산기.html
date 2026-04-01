@@ -291,7 +291,10 @@
 
     <!-- Results -->
     <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 mb-5">
-        <h2 class="font-semibold text-slate-800 mb-4">산출 결과</h2>
+        <div class="flex items-baseline justify-between mb-4">
+            <h2 class="font-semibold text-slate-800">산출 결과</h2>
+            <span id="divisor-info" class="text-xs text-slate-400"></span>
+        </div>
 
         <!-- Formula Breakdown -->
         <div class="bg-slate-50 rounded-xl p-4 mb-5 space-y-3">
@@ -515,7 +518,6 @@
                 input.addEventListener('input', function() {
                     headcount[team.id][m] = Math.max(0, parseInt(this.value) || 0);
                     updateHeadcountSummary();
-                    calculate();
                 });
                 td.appendChild(input);
                 tr.appendChild(td);
@@ -558,7 +560,11 @@
         const avg = getAvgHeadcount();
         document.getElementById('sum-avg').textContent = avg.toFixed(1);
         document.getElementById('avg-headcount-summary').textContent = avg.toFixed(1) + '명';
-        document.getElementById('impact-hc').textContent = avg.toFixed(1);
+        const hcEl = document.getElementById('impact-hc');
+        if (hcEl) hcEl.textContent = avg.toFixed(1);
+
+        // Always recalculate when headcount changes
+        calculate();
     }
 
     // ── Toggle sections ──
@@ -698,6 +704,16 @@
         const recvScore = (recvWeighted / divisor) * 0.8;
         const sentScore = (sentWeighted / divisor) * 0.2;
         const totalScore = recvScore + sentScore;
+
+        // Show divisor info
+        const divisorInfo = document.getElementById('divisor-info');
+        if (isIndividual) {
+            divisorInfo.textContent = '개인 (인원수 나누기 없음)';
+        } else if (isTeam) {
+            divisorInfo.textContent = `${teamName} 평균인원: ${teamHC.toFixed(1)}명`;
+        } else {
+            divisorInfo.textContent = `부문 평균인원: ${avgHC.toFixed(1)}명`;
+        }
 
         // Totals
         document.getElementById('total-recv').textContent = recvRaw + '건';
