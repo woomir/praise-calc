@@ -113,7 +113,7 @@
                     </tfoot>
                 </table>
             </div>
-            <p class="text-[11px] text-slate-400 mt-3">
+            <p class="text-xs text-slate-400 mt-3">
                 * 대상: 팀장, 전문직, 행정직 (월말 기준 인원수 입력)
             </p>
         </div>
@@ -151,7 +151,7 @@
             <p id="team-headcount-info" class="mt-1 text-xs text-slate-400"></p>
         </div>
 
-        <p id="mode-desc" class="mt-2 text-xs text-slate-400">
+        <p id="mode-desc" class="mt-2 text-sm text-slate-400">
             연구소 전체의 칭찬카드 횟수를 입력하여 부문 점수를 산출합니다.
         </p>
     </section>
@@ -159,7 +159,7 @@
     <!-- Card Input Table -->
     <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 mb-5">
         <h2 class="font-semibold text-slate-800 text-sm mb-1">칭찬카드 입력</h2>
-        <p class="text-xs text-slate-400 mb-4" id="input-guide">
+        <p class="text-sm text-slate-400 mb-4" id="input-guide">
             연구소 소속원이 주고받은 칭찬카드의 총 건수를 부서별로 입력하세요.
         </p>
 
@@ -334,11 +334,11 @@
                      class="text-5xl sm:text-6xl font-black tabular-nums score-transition text-slate-300">
                     0.00
                 </div>
-                <div class="text-xs text-slate-400 mt-1" id="score-label">칭찬감사카드 점수</div>
+                <div class="text-sm text-slate-400 mt-1" id="score-label">칭찬감사카드 점수</div>
 
                 <!-- Progress Bar -->
                 <div class="mt-4">
-                    <div class="flex justify-between text-[11px] text-slate-400 mb-1">
+                    <div class="flex justify-between text-sm text-slate-400 mb-1">
                         <span>0</span><span>2</span><span>4</span><span>6</span><span>8</span>
                         <span class="font-semibold text-blue-600">10 (목표)</span>
                     </div>
@@ -355,8 +355,8 @@
 
             <div class="flex flex-col items-center justify-center px-5 sm:px-8 py-4 bg-slate-50 rounded-2xl min-w-[100px]">
                 <div id="grade-display" class="text-5xl font-black score-transition text-slate-300">0</div>
-                <div class="text-[11px] text-slate-400 mt-1 font-medium">평가점수</div>
-                <div class="text-[10px] text-slate-300">(5점 만점)</div>
+                <div class="text-sm text-slate-400 mt-1 font-medium">평가점수</div>
+                <div class="text-xs text-slate-300">(5점 만점)</div>
             </div>
         </div>
 
@@ -374,10 +374,10 @@
             </svg>
         </button>
         <div id="impact-content" class="hidden mt-4">
-            <p id="impact-desc" class="text-xs text-slate-400 mb-3">현재 부문 평균인원(<span id="impact-hc">36.0</span>명) 기준</p>
+            <p id="impact-desc" class="text-sm text-slate-400 mb-3">현재 부문 평균인원(<span id="impact-hc">36.0</span>명) 기준</p>
             <div class="grid grid-cols-2 gap-3">
                 <div class="rounded-lg bg-blue-50 p-3">
-                    <div class="text-[11px] text-blue-400 font-medium mb-2">받은 카드 (80%)</div>
+                    <div class="text-sm text-blue-400 font-medium mb-2">받은 카드 (80%)</div>
                     <div class="space-y-1.5">
                         <div class="flex justify-between text-xs">
                             <span class="text-slate-600">타 본부 x5</span>
@@ -390,7 +390,7 @@
                     </div>
                 </div>
                 <div class="rounded-lg bg-emerald-50 p-3">
-                    <div class="text-[11px] text-emerald-400 font-medium mb-2">보낸 카드 (20%)</div>
+                    <div class="text-sm text-emerald-400 font-medium mb-2">보낸 카드 (20%)</div>
                     <div class="space-y-1.5">
                         <div class="flex justify-between text-xs">
                             <span class="text-slate-600">타 본부 x5</span>
@@ -409,24 +409,24 @@
     <!-- Individual Target Examples (shown in individual mode) -->
     <section id="examples-section" class="bg-white rounded-2xl border border-violet-100 shadow-sm p-5 sm:p-6 mb-5 hidden">
         <h3 class="font-semibold text-slate-800 text-sm mb-1">1인당 목표 달성 조합 예시</h3>
-        <p class="text-xs text-slate-400 mb-3">모든 연구원이 아래 수준으로 참여하면 부문 목표(10점) 달성</p>
+        <p class="text-sm text-slate-400 mb-3">모든 연구원이 아래 수준으로 참여하면 부문 목표(10점) 달성</p>
         <div class="space-y-2">
-            <div class="flex items-center gap-3 bg-violet-50 rounded-lg p-3 text-xs">
+            <div class="flex items-center gap-3 bg-violet-50 rounded-lg p-3 text-sm">
                 <span class="shrink-0 w-5 h-5 rounded-full bg-violet-200 text-violet-700 font-bold flex items-center justify-center text-[11px]">1</span>
                 <span class="text-slate-700">타 본부에서 <strong>2장 받고</strong> + 타 본부에 <strong>2장 보내기</strong></span>
                 <span class="ml-auto font-mono font-bold text-violet-600 whitespace-nowrap">= 10.0</span>
             </div>
-            <div class="flex items-center gap-3 bg-violet-50 rounded-lg p-3 text-xs">
+            <div class="flex items-center gap-3 bg-violet-50 rounded-lg p-3 text-sm">
                 <span class="shrink-0 w-5 h-5 rounded-full bg-violet-200 text-violet-700 font-bold flex items-center justify-center text-[11px]">2</span>
                 <span class="text-slate-700">타 본부에서 <strong>3장 받기</strong> (보내기 불필요)</span>
                 <span class="ml-auto font-mono font-bold text-violet-600 whitespace-nowrap">= 12.0</span>
             </div>
-            <div class="flex items-center gap-3 bg-violet-50 rounded-lg p-3 text-xs">
+            <div class="flex items-center gap-3 bg-violet-50 rounded-lg p-3 text-sm">
                 <span class="shrink-0 w-5 h-5 rounded-full bg-violet-200 text-violet-700 font-bold flex items-center justify-center text-[11px]">3</span>
                 <span class="text-slate-700">타 본부에서 <strong>1장 받고</strong> + 경관본부 타부문에서 <strong>2장 받고</strong> + 타 본부에 <strong>1장 보내기</strong></span>
                 <span class="ml-auto font-mono font-bold text-violet-600 whitespace-nowrap">= 9.8</span>
             </div>
-            <div class="flex items-center gap-3 bg-violet-50 rounded-lg p-3 text-xs">
+            <div class="flex items-center gap-3 bg-violet-50 rounded-lg p-3 text-sm">
                 <span class="shrink-0 w-5 h-5 rounded-full bg-violet-200 text-violet-700 font-bold flex items-center justify-center text-[11px]">4</span>
                 <span class="text-slate-700">경관본부 타부문에서 <strong>4장 받고</strong> + 경관본부 타부문에 <strong>1장 보내기</strong></span>
                 <span class="ml-auto font-mono font-bold text-violet-600 whitespace-nowrap">= 10.2</span>
@@ -446,8 +446,8 @@
             <table class="w-full text-sm">
                 <thead>
                     <tr class="bg-slate-50">
-                        <th class="px-4 py-2.5 text-left font-medium text-slate-500 text-xs">칭찬감사카드 점수</th>
-                        <th class="px-4 py-2.5 text-center font-medium text-slate-500 text-xs">평가점수</th>
+                        <th class="px-4 py-2.5 text-left font-medium text-slate-500 text-sm">칭찬감사카드 점수</th>
+                        <th class="px-4 py-2.5 text-center font-medium text-slate-500 text-sm">평가점수</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100" id="grade-table">
