@@ -48,7 +48,7 @@
     <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 mb-5">
         <h2 class="font-semibold text-slate-800 text-sm mb-3">조직 구조 및 가중치</h2>
         <div class="text-xs leading-relaxed bg-slate-50 rounded-xl p-4 text-slate-600 space-y-1">
-            <div class="text-slate-400">LS MnM</div>
+            <div class="text-slate-400">회사</div>
             <div class="pl-3">
                 <div><span class="text-amber-600 font-bold">x5</span> <span class="text-slate-500">사업본부</span> <span class="text-slate-300">── 타 본부/사업부</span></div>
                 <div><span class="text-amber-600 font-bold">x5</span> <span class="text-slate-500">제련소</span> <span class="text-slate-300">── 타 본부/사업부</span></div>
@@ -122,20 +122,20 @@
     <!-- Mode Toggle -->
     <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 mb-5">
         <div class="flex rounded-xl bg-slate-100 p-1" role="tablist">
-            <button onclick="setMode('dept')" id="btn-dept" role="tab"
+            <button onclick="setMode('individual')" id="btn-individual" role="tab"
                     class="flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all
                            bg-white text-slate-900 shadow-sm">
-                부문 전체
+                개인
             </button>
             <button onclick="setMode('team')" id="btn-team" role="tab"
                     class="flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all
                            text-slate-500 hover:text-slate-700">
                 팀별
             </button>
-            <button onclick="setMode('individual')" id="btn-individual" role="tab"
+            <button onclick="setMode('dept')" id="btn-dept" role="tab"
                     class="flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all
                            text-slate-500 hover:text-slate-700">
-                개인
+                부문 전체
             </button>
         </div>
 
@@ -468,7 +468,7 @@
     </section>
 
     <footer class="mt-8 text-center text-xs text-slate-300">
-        LS MnM 연구소 칭찬감사카드 점수 계산기 | 2026
+        칭찬감사카드 점수 계산기 | 2026
     </footer>
 </div>
 
@@ -485,7 +485,7 @@
     const MONTHS = [3, 4, 5, 6, 7, 8];
 
     // ── State ──
-    let currentMode = 'dept';
+    let currentMode = 'individual';
     let impactOpen = false;
     let hcOpen = false;
     // headcount[teamId][month] = number
@@ -823,6 +823,7 @@
     // ── Bootstrap ──
     initHeadcount();
     initTeamSelector();
+    setMode('individual');
     calculate();
 </script>
 </body>
